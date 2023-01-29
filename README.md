@@ -14,7 +14,7 @@ The bot can be used in two ways:
     - **`/h`**: Show a help message that lists all the commands
     - **`/s <message>`**: Save the message to the database
     - **`/q <question>`**: Ask a question about the database and get a response from GPT3
-    - **`/f <message>`**: Find a relatead messages in the database
+    - **`/f <message>`**: Find related messages in the database
 
 ## Future Features
 
