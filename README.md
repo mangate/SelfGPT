@@ -11,10 +11,10 @@ The bot can be used in two ways:
 - **No-Command**: This is the default mode. The bot will respond to any message you send it through the GPT3 regular completion API.
 - **Commands**: This mode is activated by sending the bot a message starting with the command character. The default command character is `/`. 
   - Currently supported commands
-  - **`\h`**: Show a help message that lists all the commands
-  - **`\s <message>`**: Save the message to the database
-  - **`\q <question>`**: Ask a question about the database and get a response from GPT3
-  - **`\f <message>`**: Find a relatead massages in the database
+  - **`/h`**: Show a help message that lists all the commands
+  - **`/s <message>`**: Save the message to the database
+  - **`/q <question>`**: Ask a question about the database and get a response from GPT3
+  - **`/f <message>`**: Find a relatead massages in the database
 
 ## Future Features
 
