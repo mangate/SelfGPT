@@ -14,14 +14,14 @@ The bot can be used in two ways:
   - **`/h`**: Show a help message that lists all the commands
   - **`/s <message>`**: Save the message to the database
   - **`/q <question>`**: Ask a question about the database and get a response from GPT3
-  - **`/f <message>`**: Find a relatead massages in the database
+  - **`/f <message>`**: Find a relatead messages in the database
 
 ## Future Features
 
 - [ ]  Add a way to delete messages from the database.
 - [ ]  Add a way to edit messages in the database.
 - [ ]  Receive PDF/Word files and parse them into the database.
-- [ ]  Receive audio massages, transcribe them and parse them into the database.
+- [ ]  Receive audio messages, transcribe them and parse them into the database.
 
 ## How to use selfGPT
 1. Clone or download the code from the repository.
@@ -45,7 +45,7 @@ The bot can be used in two ways:
     - Download and install [NGROK](https://ngrok.com/download).
     - Open the terminal and run `ngrok http 5000` (5000 is the default port used by Flask).
     - From that Ngrok links, copy the HTTPS link URL
-    - Go to back to Twilio's sand box for whatsapp and add the URL given by NGROK with the suffix */wasms*  to the box marked `WHEN A MESSAGE COMES IN`. (see [here](https://www.pragnakalp.com/create-whatsapp-bot-with-twilio-using-python-tutorial-with-examples/) for a tutorial) and press save.
+    - Go to back to Twilio's sand box for whatsapp and add the URL given by NGROK with the suffix */wasms*  to the box marked `WHEN A MESSAGE COMES IN` (see [here](https://www.pragnakalp.com/create-whatsapp-bot-with-twilio-using-python-tutorial-with-examples/) for a tutorial) and press save.
   
 That's it! You can now use the bot. Please note that the bot will only work if the terminal is open and running the code. Also the twilio sandbox disconnects after 72 hours so you will have to reconnect it after that. You might also have to get a new URL from NGROK and edit the Twilio sandbox again.
 
