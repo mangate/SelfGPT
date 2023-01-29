@@ -23,7 +23,8 @@ The bot can be used in two ways:
 - [ ]  Add a way to delete messages from the database.
 - [ ]  Add a way to edit messages in the database.
 - [ ]  Receive PDF/Word files and parse them into the database.
-- [ ]  Receive audio messages, transcribe them and parse them into the database.
+- [ ]  Receive audio messages, transcribe them (using OpenAI Whisper or something similiar) and parse them into the database.
+- [ ]  Add ability to upload photos, embedd them with OpenAI CLIP and enable searching them with natural language.
 
 ## How to use selfGPT
 1. Clone or download the code from the repository.
