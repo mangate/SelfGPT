@@ -5,6 +5,8 @@ This is the documentation for the SelfGPT WhatsApp bot.
 This bot allows you to contact GPT3 directly from WhatsApp.
 This bot also allows you to save your own personal data and later search and retrieve it using GPT3 to generate a response. In the `examples` folder you can see several examples of how to use this bot so you don't have to remember anything ever again.
 
+**Note:** While the code in its current state is very useful I would highly appreciate and contributions that make it more "production-ready".
+
 ## Current Features
 
 The bot can be used in two ways:
@@ -47,7 +49,12 @@ The bot can be used in two ways:
     - From that Ngrok links, copy the HTTPS link URL
     - Go to back to Twilio's sand box for whatsapp and add the URL given by NGROK with the suffix */wasms*  to the box marked `WHEN A MESSAGE COMES IN` (see [here](https://www.pragnakalp.com/create-whatsapp-bot-with-twilio-using-python-tutorial-with-examples/) for a tutorial) and press save.
   
-That's it! You can now use the bot. Please note that the bot will only work if the terminal is open and running the code. Also the twilio sandbox disconnects after 72 hours so you will have to reconnect it after that. You might also have to get a new URL from NGROK and edit the Twilio sandbox again.
+That's it! You can now use the bot.
+
+## Known issues
+
+- The Twilio account disconnects each 72 hours: Reconnecting is easy, just send the same message you send on step 5 that connected you in the first place.
+- The Ngrok chantes URL: Sometime the bot would stop responding. This can be caused by the Ngrok changing the URL. In this case you have to repeat step 6.
 
 ## How to contribute
 
