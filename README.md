@@ -49,12 +49,12 @@ The bot can be used in two ways:
     - From that Ngrok links, copy the HTTPS link URL
     - Go to back to Twilio's sand box for whatsapp and add the URL given by NGROK with the suffix */wasms*  to the box marked `WHEN A MESSAGE COMES IN` (see [here](https://www.pragnakalp.com/create-whatsapp-bot-with-twilio-using-python-tutorial-with-examples/) for a tutorial) and press save.
   
-That's it! You can now use the bot.
+That's it! You can now use the bot by running `selfgpt.py`. Notice that tha bot runs only as long as the program runs.
 
 ## Known issues
 
 - The Twilio account disconnects every 72 hours: Reconnecting is easy. Just send the same message you sent on step 5 that connected you in the first place.
-- The Ngrok chantes URL: Sometime the bot would stop responding. This can be caused by the Ngrok changing the URL. In this case you have to repeat step 6.
+- The Ngrok changes URL: Sometime the bot would stop responding. This can be caused by the Ngrok changing the URL. In this case you have to repeat step 6.
 
 ## How to contribute
 
