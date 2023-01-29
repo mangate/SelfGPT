@@ -3,7 +3,7 @@
 This is the documentation for the SelfGPT WhatsApp bot. 
 
 This bot allows you to contact GPT3 directly from WhatsApp.
-This bot also allows you to save your own personal data and later search and retrieve it using GPT3 to generate a response.
+This bot also allows you to save your own personal data and later search and retrieve it using GPT3 to generate a response. In the `examples` folder you can see several examples of how to use this bot so you don't have to remember anything ever again.
 
 ## Current Features
 
