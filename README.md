@@ -53,7 +53,7 @@ That's it! You can now use the bot.
 
 ## Known issues
 
-- The Twilio account disconnects each 72 hours: Reconnecting is easy, just send the same message you send on step 5 that connected you in the first place.
+- The Twilio account disconnects each 72 hours: Reconnecting is easy, just send the same message you sent on step 5 that connected you in the first place.
 - The Ngrok chantes URL: Sometime the bot would stop responding. This can be caused by the Ngrok changing the URL. In this case you have to repeat step 6.
 
 ## How to contribute
