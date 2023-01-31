@@ -37,14 +37,14 @@ The bot can be used in two ways:
 
 5. Choose the path for your database file and add it to the `config.yaml` file as well.
 
-5. **Twilio:**
+6. **Twilio:**
    - Set an account on [Twilio](https://www.twilio.com/). 
    - Go to Twilio's [whatsapp website](https://www.twilio.com/whatsapp) and sign up.
    - Connect Twilio with WhatsApp (see [here](https://www.pragnakalp.com/create-whatsapp-bot-with-twilio-using-python-tutorial-with-examples/) for a tutorial).
    - Save the contact details given by Twilio.
    - Send message to the number given by Twilio as instructed in the tutorial.
   
-6.  **NGROK**
+7.  **NGROK**
     - Download and install [NGROK](https://ngrok.com/download).
     - Open the terminal and run `ngrok http 5000` (5000 is the default port used by Flask).
     - From that Ngrok links, copy the HTTPS link URL
@@ -54,8 +54,8 @@ That's it! You can now use the bot by running `selfgpt.py`. Notice that tha bot 
 
 ## Known issues
 
-- The Twilio account disconnects every 72 hours: Reconnecting is easy. Just send the same message you sent on step 5 that connected you in the first place.
-- The Ngrok changes URL: Sometime the bot would stop responding. This can be caused by the Ngrok changing the URL. In this case you have to repeat step 6.
+- The Twilio account disconnects every 72 hours: Reconnecting is easy. Just send the same message you sent on step 6 that connected you in the first place.
+- The Ngrok changes URL: Sometime the bot would stop responding. This can be caused by the Ngrok changing the URL. In this case you have to repeat step 7.
 
 ## How to contribute
 
