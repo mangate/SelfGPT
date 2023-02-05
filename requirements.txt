@@ -3,3 +3,13 @@ numpy
 openai
 flask
 twilio
+pandas
+numpy
+openai
+flask
+twilio
+pyyaml
+matplotlib
+plotly
+scipy
+scikit-learn
