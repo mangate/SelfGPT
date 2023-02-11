@@ -46,6 +46,7 @@ The bot can be used in two ways:
   
 7.  **NGROK**
     - Download and install [NGROK](https://ngrok.com/download).
+    - Make sure you configure NGROK with your auth token (visit https://dashboard.ngrok.com/get-started/your-authtoken)
     - Open the terminal and run `ngrok http 5000` (5000 is the default port used by Flask).
     - From that Ngrok links, copy the HTTPS link URL
     - Go to back to Twilio's sand box for whatsapp and add the URL given by NGROK with the suffix */wasms*  to the box marked `WHEN A MESSAGE COMES IN` (see [here](https://www.pragnakalp.com/create-whatsapp-bot-with-twilio-using-python-tutorial-with-examples/) for a tutorial) and press save.
