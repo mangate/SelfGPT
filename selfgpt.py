@@ -15,6 +15,8 @@ with open("config.yaml", 'r') as stream:
     PATH = config['PATH']
     OPENAI_KEY = config['OPENAI_KEY']
 
+dbPath = os.path.join(PATH, "database.csv");
+
 EMBEDDING_MODEL = 'text-embedding-ada-002'
 COMPLETIONS_MODEL = "text-davinci-003"
 QUESTION_COMPLETIONS_API_PARAMS = {
@@ -47,7 +49,7 @@ def wa_sms_reply():
     dt_string = now.strftime("%d/%m/%Y %H:%M:%S")
     
     # Load the database
-    df = pd.read_csv(PATH+"database.csv")
+    df = pd.read_csv(dbPath)
 
     print("msg-->",msg) # Printing the message on the console, for debugging purpose
     resp = MessagingResponse()
@@ -75,7 +77,7 @@ def wa_sms_reply():
         # Save the massage to the database
         text_embedding = get_embedding(data_to_save, engine='text-embedding-ada-002')
         df = df.append({"time":dt_string,"message":data_to_save, "ada_search": text_embedding},ignore_index=True)
-        df.to_csv(PATH+"database.csv",index=False)
+        df.to_csv(dbPath,index=False)
         reply.body("Message saved successfully!")
 
     # Find related messages
@@ -135,10 +137,10 @@ if __name__ == "__main__":
 
     openai.api_key = OPENAI_KEY
     # Check if the database exists if not create it
-    if not os.path.isfile(PATH+"database.csv"):
+    if not os.path.isfile(dbPath):
         #Create the dataframe with columns for time and message
         df = pd.DataFrame(columns=["time","message", "ada_search"])
         # Save the dataframe to a csv file
-        df.to_csv(PATH+"database.csv",index=False)
+        df.to_csv(dbPath,index=False)
 
     app.run(debug=True)
