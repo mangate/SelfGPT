@@ -1,0 +1,4 @@
+# visit https://dashboard.ngrok.com/get-started/your-authtoken to get your token
+authtoken: <YOUR NGROK AUTH TOKEN>
+version: "2"
+region: us
