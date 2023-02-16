@@ -9,7 +9,8 @@ RUN curl -s https://ngrok-agent.s3.amazonaws.com/ngrok.asc \
     && apt update \
     && apt -y install ngrok
 RUN pip install --upgrade pip
-COPY . /SelfGPT
+RUN mkdir /SelfGPT
+COPY selfgpt.py requirements.txt /SelfGPT
 WORKDIR /SelfGPT
 RUN pip install -r requirements.txt
 COPY --from=runtime-context . .

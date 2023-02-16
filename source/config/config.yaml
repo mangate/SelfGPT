@@ -1,0 +1,4 @@
+# For deployment in a container you can use /SelfGPT/source/db
+# Else, you can use /source/db
+PATH: <Path to save the local knowledge database>
+OPENAI_KEY: <Your OpenAI API key>

@@ -10,7 +10,7 @@ from twilio.twiml.messaging_response import MessagingResponse
 import pandas as pd
 
 # Open the yaml config file and load the variables
-with open("config.yaml", 'r') as stream:
+with open("source/config/config.yaml", 'r') as stream:
     config = yaml.safe_load(stream)
     PATH = config['PATH']
     OPENAI_KEY = config['OPENAI_KEY']
