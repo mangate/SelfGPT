@@ -1,1 +1,6 @@
 OPENAI_KEY: <Your OpenAI API key>
+DEPLOYMENT: local # change to azure if you want the db to reside in your azure storage account
+AZURE:
+  connectionString: <Azure storage connection string> # Obtain from azure portal -> your storage account -> "Access keys"
+  container: selfgpt
+  blob: theblob
