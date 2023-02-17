@@ -31,13 +31,13 @@ The bot can be used in two ways:
 
 2. Set an account on [OpenAI](https://beta.openai.com/) and get your API key.
 
-3. If you are using _Docker_ skip to the [next section](#running-selfgpt-using-docker)
+3. Add the API key to the `user\config\config.yaml` file.
 
-4. Add the API key to the `config.yaml` file.
+4. If you are using _Docker_ skip to the [next section](#running-selfgpt-using-docker)
 
 5. Install the requirements using `pip install -r requirements.txt` (you might need to run it with the `--user` flag depending on your setup)
 
-6. Choose the path for your database file and add it to the `config.yaml` file as well.
+6. The database will be saved into the `user\data` folder.
 
 7. **Twilio:**
    - Set an account on [Twilio](https://www.twilio.com/). 
@@ -57,23 +57,16 @@ That's it! You can now use the bot by running `selfgpt.py`. Notice that tha bot 
 
 ## Running SelfGPT using Docker
 
-1. **Note**: the docker image uses config files placed in `runtime-context/`.
-
-2. Add the _OpenAI_ API key to the `runtime-context/config-secret.yaml` file.
-
-3. Choose the path for your database file and add it to the `runtime-context/config-secret.yaml` file as well.
-   If the path is relative, it will be relative to the location you run `run-docker.cmd` from (step 7).
-
-4. Add your NGROK auth token to `runtime-context/ngrok-secret.yml` (`yml` not `yaml`)
+1. Add your NGROK auth token to `user/config/ngrok.yml` (`yml` not `yaml`)
    (visit https://dashboard.ngrok.com/get-started/your-authtoken)
 
-5. You need to set up your _Twilio_ account similar to step 7 in the previous section.
+2. You need to set up your _Twilio_ account similar to step 7 in the previous section.
 
-6. Run `build-docker.cmd`
+3. Run `build-docker.cmd`
 
-7. Run `run-docker.cmd`
+4. Run `run-docker.cmd`
 
-8. Finally, copy the NGROK forwarding address into your Twilio configuration.
+5. Finally, copy the NGROK forwarding address into your Twilio configuration.
 
 ## Known issues
 
