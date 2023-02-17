@@ -10,12 +10,22 @@ from twilio.twiml.messaging_response import MessagingResponse
 import pandas as pd
 
 # Open the yaml config file and load the variables
-with open("source/config/config.yaml", 'r') as stream:
+with open("user/config/config.yaml", 'r') as stream:
     config = yaml.safe_load(stream)
-    PATH = config['PATH']
     OPENAI_KEY = config['OPENAI_KEY']
 
-dbPath = os.path.join(PATH, "database.csv");
+config_ok = True
+
+if OPENAI_KEY == "<Your OpenAI API key>":
+    print("Please add your OpenAI API key to the user/config/config.yaml file")
+    config_ok = False
+
+if not config_ok:
+    exit()
+
+print("\nOPENAI_KEY--> ", "\"" + OPENAI_KEY[0:2] + " ... " + OPENAI_KEY[-3:] + "\"\n")
+
+dbPath = "user/data/database.csv";
 
 EMBEDDING_MODEL = 'text-embedding-ada-002'
 COMPLETIONS_MODEL = "text-davinci-003"

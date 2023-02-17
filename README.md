@@ -35,7 +35,7 @@ The bot can be used in two ways:
 
 4. Add the API key to the `config.yaml` file.
 
-5. Install the requirements using `pip install -r requirements.txt`
+5. Install the requirements using `pip install -r requirements.txt` (you might need to run it with the `--user` flag depending on your setup)
 
 6. Choose the path for your database file and add it to the `config.yaml` file as well.
 
