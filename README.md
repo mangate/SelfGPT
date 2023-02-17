@@ -29,24 +29,26 @@ The bot can be used in two ways:
 ## How to use selfGPT
 1. Clone or download the code from the repository.
 
-2. Set an account on [OpenAI](https://beta.openai.com/) and get your API key.
+2. Copy the files `user/config/config.yaml.example` and `user/config/ngrok.yml.example` to the same location but without the `.example` extension. Those files (without the `.example` extension) are ignored by git and you may safely put your secrets in them.
 
-3. Add the API key to the `user\config\config.yaml` file.
+3. Set an account on [OpenAI](https://beta.openai.com/) and get your API key.
 
-4. If you are using _Docker_ skip to the [next section](#running-selfgpt-using-docker)
+4. Add the API key to the `user\config\config.yaml` file.
 
-5. Install the requirements using `pip install -r requirements.txt` (you might need to run it with the `--user` flag depending on your setup)
+5. If you are using _Docker_ skip to the [next section](#running-selfgpt-using-docker)
 
-6. The database will be saved into the `user\data` folder.
+6. Install the requirements using `pip install -r requirements.txt` (you might need to run it with the `--user` flag depending on your setup)
 
-7. **Twilio:**
+7. The database will be saved into the `user\data` folder.
+
+8. **Twilio:**
    - Set an account on [Twilio](https://www.twilio.com/). 
    - Go to Twilio's [whatsapp website](https://www.twilio.com/whatsapp) and sign up.
    - Connect Twilio with WhatsApp (see [here](https://www.pragnakalp.com/create-whatsapp-bot-with-twilio-using-python-tutorial-with-examples/) for a tutorial).
    - Save the contact details given by Twilio.
    - Send message to the number given by Twilio as instructed in the tutorial.
   
-8.  **NGROK**
+9.  **NGROK**
     - Download and install [NGROK](https://ngrok.com/download).
     - Make sure you configure NGROK with your auth token (visit https://dashboard.ngrok.com/get-started/your-authtoken)
     - Open the terminal and run `ngrok http 5000` (5000 is the default port used by Flask).
