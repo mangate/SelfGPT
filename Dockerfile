@@ -9,8 +9,9 @@ RUN curl -s https://ngrok-agent.s3.amazonaws.com/ngrok.asc \
     && apt update \
     && apt -y install ngrok
 RUN pip install --upgrade pip
-COPY . /SelfGPT
+RUN mkdir /SelfGPT
 WORKDIR /SelfGPT
+COPY . .
 RUN pip install -r requirements.txt
-COPY --from=runtime-context . .
+COPY --from=docker . .
 CMD ["bash", "start.sh"]
