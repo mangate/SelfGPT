@@ -1,5 +1,5 @@
 user/
 tmp/
 __pycache__
-azure/main.bicep
 azure/main.json
+azure/azure-deploy.log

@@ -35,7 +35,7 @@ The bot can be used in two ways:
 
 4. Add the API key to the `user\config\config.yaml` file.
 
-5. If you are using _Docker_ skip to the [next section](#running-selfgpt-using-docker)
+5. If you are using _Docker_ skip to the [Running SelfGPT using Docker](#running-selfgpt-using-docker), or if you want to deploy to *Azure* skip to [Deploy to Microsoft Azure](#deploy-to-microsoft-azure).
 
 6. Install the requirements using `pip install -r requirements/requirements.txt` (you might need to run it with the `--user` flag depending on your setup)
 
@@ -70,41 +70,13 @@ That's it! You can now use the bot by running `selfgpt.py`. Notice that tha bot 
 
 5. Finally, copy the NGROK forwarding address into your Twilio configuration.
 
-## Storing the Database in Azure
-
-If you plan to host your bot on the cloud, or if you don't want to store the database locally on your machine, you can configure *SelfGPT* to use *Azure Storage*.
-
-1. Create an *Azure Storage* account and grab its connection string from the *Access keys* blade.
-
-2. Edit your `config.yaml`
-   1. Set `DEPLOYMENT: azure`
-   2. Set the `AZURE:` section like this:
-```
-AZURE:
-  connectionString: <your connection string>
-  container: selfgpt
-  blob: theblob
-```
-
-3. The container and blob names are arbitrary, and you may change them if you want.
-
 ## Deploy to Microsoft Azure
 
-1. First make sure it runs on your machine, either directly, or via Docker. The reason for this is that the deployment scripts use the configuration as set in the `user/config` directory.
+1. Install the *Azure CLI* tools, instructions [here](https://learn.microsoft.com/en-us/cli/azure/install-azure-cli) and verify they work properly by running `az account list` and making sure it completes without error and outputs the correct information.
 
-2. Also make sure you have set up your storage account by following the instructions in the [previous section](#storing-the-database-in-azure).
+2. Enter the `azure` folder, and run `azure-deploy.cmd` - it will ask you a few questions, and then deploy everything to *Azure* - it's as simple as that!
 
-3. Install the *Azure CLI* tools, instructions [here](https://learn.microsoft.com/en-us/cli/azure/install-azure-cli) and verify they work properly by running `az account list` and making sure it completes without error and outputs the correct information.
-
-4. Enter the `azure` folder, and run `generate-azure-template.cmd` - it will generate an *ARM* (Azure Resource Manager) *JSON* template which you can deploy either interactively using the [*Azure Portal*](https://portal.azure.com/), or by using the `az` *Azure CLI* command set.
-
-5. If you have already created a resource group to hold the deployment, you may deploy using *Azure CLI* by runing `az deployment group create --resource-group <<resource group name>> --template-file main.json`. You will be prompted to choose the app name (the name must be unique across *Azure*).
-
-6. If you want to create a new resource group, you can do so using the [*Azure Portal*](https://portal.azure.com/) or using the script `create-resource-group.cmd` (to get a list of locations you may use the script `list-locations.cmd`).
-
-7. The docker image used for this deployment is hosted on [*Docker Hub*](https://hub.docker.com/layers/paviad/selfgpt/v5/images/sha256-537a4b80793bf11c03c014e805434283609e32ed99f3747998069a5c99204355?context=repo) and tagged `paviad/selfgpt:v5` and it's a snapshot of this repository as it was on February 17th 2023. You may and probably should change the image tag to refer to the latest image (right now it is `paviad/selfgpt:latest`) or if you've hosted your own image, you may of course use that instead.
-
-8. Once the app is deployed, you can enter its address in the _Twilio_ incoming message hook (remember to suffix it with `/wasms`). The address is `https://<<app name>>.azurewebsites.net/wasms`.
+3. Once the app is deployed, you can enter its address in the _Twilio_ incoming message hook (remember to suffix it with `/wasms`). The address is `https://<<app name>>.azurewebsites.net/wasms`.
 
 **NOTE**: If you are using a free app service plan (as is the default in the repo at the moment), note that it might take a while for the app to "warm up" so be patient (might take up to 3 minutes, or maybe more). The way to deal with that is to send a `/h` command to the bot and if it doesn't respond, wait 3 minutes and send another `/h` - only if it responds then you may send other commands to it.
 
