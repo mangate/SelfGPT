@@ -2,7 +2,7 @@
 
 param webAppName string
 param openAiKey string
-param imageTag string = 'paviad/selfgpt:v5'
+param imageTag string
 param linuxFxVersion string = 'DOCKER|${imageTag}' // The runtime stack of web app
 param location string = resourceGroup().location // Location for all resources
 param serverFarmId string

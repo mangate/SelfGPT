@@ -10,6 +10,8 @@ from twilio.twiml.messaging_response import MessagingResponse
 
 import file_dbaccess
 import azure_blob_dbaccess
+import whisper
+from urllib.request import urlopen, Request
 
 AZURE = {}
 
@@ -78,13 +80,43 @@ app = Flask(__name__)
 @app.route("/wa")
 def wa_hello():
     return "Hello, what can I do for you!"
- 
+
 @app.route("/wasms", methods=['POST'])
 def wa_sms_reply():
     """Respond to incoming calls with a simple text message."""
     # Fetch the message
     
-    msg = request.form.get('Body').lower() # Reading the message from the whatsapp
+    print("request.form-->",request.form)
+
+    mediaUrl = request.form.get("MediaUrl0")
+    print("mediaUrl-->", mediaUrl)
+
+    if mediaUrl:
+      req = Request(
+          mediaUrl,
+          data = None,
+          headers = {
+              "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.47 Safari/537.36"
+          }
+      )
+      soundReq = urlopen(req)
+      sound = soundReq.read()
+      fhand = open("sound.ogg", "wb")
+      fhand.write(sound)
+      fhand.close()
+      result = model.transcribe("sound.ogg")
+      print("result-->",result)
+      text = result["text"].strip()
+      if text.endswith("?"):
+        msg = "/q " + text
+      else:
+        msg = "/s " + text
+      msg = msg.lower()
+      prependToResponse = "I heard: " + text + "\n\nRunning this command: \n\n" + msg + "\n\n"
+    else:
+      prependToResponse = ""
+      msg = request.form.get('Body').lower() # Reading the message from the whatsapp
+
     # Get the message time
     now = datetime.now()
     dt_string = now.strftime("%d/%m/%Y %H:%M:%S")
@@ -100,7 +132,12 @@ def wa_sms_reply():
     # ========================================
     # Help menu
     if msg.startswith("/h"):
-        reply.body("Commands:\n\n/q [question] - Ask a question\n/s [message] - Save a message\n/f [message] - Find related messages\n/h - Show this help menu")
+        reply.body("Commands:\n\n" +
+          "/q [question] - Ask a question\n" +
+          "/s [message] - Save a message\n" +
+          "/f [message] - Find related messages\n" +
+          "/h - Show this help menu\n\n" +
+          "You may also send a voice message.")
 
     # Question answering
     elif msg.startswith("/q "):
@@ -110,7 +147,7 @@ def wa_sms_reply():
         prompt = construct_prompt(question, df, top_n=3)
         # Get the answer
         response = openai.Completion.create(prompt=prompt, **QUESTION_COMPLETIONS_API_PARAMS)
-        reply.body(response["choices"][0]["text"])
+        reply.body(prependToResponse + response["choices"][0]["text"])
     
     # Save the message
     elif msg.startswith("/s "):
@@ -119,7 +156,7 @@ def wa_sms_reply():
         text_embedding = get_embedding(data_to_save, engine='text-embedding-ada-002')
         df = df.append({"time":dt_string,"message":data_to_save, "ada_search": text_embedding},ignore_index=True)
         db.save(df)
-        reply.body("Message saved successfully!")
+        reply.body(prependToResponse + "Message saved successfully!")
 
     # Find related messages
     elif msg.startswith("/f "):
@@ -175,6 +212,8 @@ def return_most_similiar(question, df, top_n=3):
     return most_similiar
 
 if __name__ == "__main__":	
+
+    model = whisper.load_model('base')
 
     openai.api_key = OPENAI_KEY
     # Check if the database exists if not create it
