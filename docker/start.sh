@@ -8,8 +8,11 @@ if [[ -z $SELFGPT_AZURE ]]; then
     mkdir -p /root/.config/ngrok
 
     cp /SelfGPT/user/config/ngrok.yml /root/.config/ngrok/ngrok.yml
+    ngrok http 5000 >/dev/null &
     sleep 3
-    python3 src/selfgpt.py & ngrok http 5000 && fg
+    WEBHOOK_URL="$(curl -s http://localhost:4040/api/tunnels | jq -r ".tunnels[0].public_url")"
+    echo $WEBHOOK_URL
+    python3 src/selfgpt.py
 else
     mkdir -p user/config
     mkdir -p user/data
