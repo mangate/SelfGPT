@@ -29,26 +29,28 @@ The bot can be used in two ways:
 ## How to use selfGPT
 1. Clone or download the code from the repository.
 
-2. Copy the files `user/config/config.yaml.example` and `user/config/ngrok.yml.example` to the same location but without the `.example` extension. Those files (without the `.example` extension) are ignored by git and you may safely put your secrets in them.
+2. Set an account on [OpenAI](https://beta.openai.com/) and get your API key.
 
-3. Set an account on [OpenAI](https://beta.openai.com/) and get your API key.
-
-4. Add the API key to the `user\config\config.yaml` file.
-
-5. If you are using _Docker_ skip to the [Running SelfGPT using Docker](#running-selfgpt-using-docker), or if you want to deploy to *Azure* skip to [Deploy to Microsoft Azure](#deploy-to-microsoft-azure).
-
-6. Install the requirements using `pip install -r requirements/requirements.txt` (you might need to run it with the `--user` flag depending on your setup)
-
-7. The database will be saved into the `user\data` folder.
-
-8. **Twilio:**
+3. Set up a **Twilio** account:
    - Set an account on [Twilio](https://www.twilio.com/). 
    - Go to Twilio's [whatsapp website](https://www.twilio.com/whatsapp) and sign up.
    - Connect Twilio with WhatsApp (see [here](https://www.pragnakalp.com/create-whatsapp-bot-with-twilio-using-python-tutorial-with-examples/) for a tutorial).
    - Save the contact details given by Twilio.
    - Send message to the number given by Twilio as instructed in the tutorial.
-  
-9.  **NGROK**
+
+4. If you want to deploy to *Azure* skip to [Deploy to Microsoft Azure](#deploy-to-microsoft-azure).
+
+5. Copy the files `user/config/config.yaml.example` and `user/config/ngrok.yml.example` to the same location but without the `.example` extension. Those files (without the `.example` extension) are ignored by git and you may safely put your secrets in them.
+
+6. Add the API key to the `user\config\config.yaml` file.
+
+7. If you are using _Docker_ skip to the [Running SelfGPT using Docker](#running-selfgpt-using-docker)
+
+8. Install the requirements using `pip install -r requirements/requirements.txt` (you might need to run it with the `--user` flag depending on your setup)
+
+9. The database will be saved into the `user\data` folder.
+
+10.  **NGROK**
     - Download and install [NGROK](https://ngrok.com/download).
     - Make sure you configure NGROK with your auth token (visit https://dashboard.ngrok.com/get-started/your-authtoken)
     - Open the terminal and run `ngrok http 5000` (5000 is the default port used by Flask).
@@ -72,11 +74,13 @@ That's it! You can now use the bot by running `selfgpt.py`. Notice that tha bot 
 
 ## Deploy to Microsoft Azure
 
-1. Install the *Azure CLI* tools, instructions [here](https://learn.microsoft.com/en-us/cli/azure/install-azure-cli) and verify they work properly by running `az account list` and making sure it completes without error and outputs the correct information.
+1. Create an account at Microsoft Azure if you don't have any [here](https://signup.live.com/?lic=1), notice that you'll need a credit card for this (you do not have to pay anything).
 
-2. Enter the `azure` folder, and run `azure-deploy.cmd` - it will ask you a few questions, and then deploy everything to *Azure* - it's as simple as that!
+2. Install the *Azure CLI* tools, instructions [here](https://learn.microsoft.com/en-us/cli/azure/install-azure-cli) and verify they work properly by running `az login` and then `az account list` and making sure it completes without error and outputs the correct information.
 
-3. Once the app is deployed, you can enter its address in the _Twilio_ incoming message hook (remember to suffix it with `/wasms`). The address is `https://<<app name>>.azurewebsites.net/wasms`.
+2. Enter the `azure` folder in the cloned repo, and run `azure-deploy.cmd` - it will ask you a few questions, and then deploy everything to *Azure* - it's as simple as that! **Note:** remember or copy the app name that you have given, you will need it in the next step. 
+
+3. Once the app is deployed, you can enter its address in the _Twilio_ incoming message hook (remember to suffix it with `/wasms`). The address is `https://<<app name>>.azurewebsites.net/wasms`. Reminder: the incoming message hook can be found in the Twilio console under Messaging -> Settings -> WhatsApp sendbox settings
 
 **NOTE**: If you are using a free app service plan (as is the default in the repo at the moment), note that it might take a while for the app to "warm up" so be patient (might take up to 3 minutes, or maybe more). The way to deal with that is to send a `/h` command to the bot and if it doesn't respond, wait 3 minutes and send another `/h` - only if it responds then you may send other commands to it.
 
