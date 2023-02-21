@@ -1,2 +1,5 @@
 user/
 tmp/
+__pycache__
+azure/main.json
+azure/azure-deploy.log

@@ -1,3 +1,2 @@
 *
-!/selfgpt.py
-!/requirements.txt
+!/src/**/*

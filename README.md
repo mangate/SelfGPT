@@ -35,9 +35,9 @@ The bot can be used in two ways:
 
 4. Add the API key to the `user\config\config.yaml` file.
 
-5. If you are using _Docker_ skip to the [next section](#running-selfgpt-using-docker)
+5. If you are using _Docker_ skip to the [Running SelfGPT using Docker](#running-selfgpt-using-docker), or if you want to deploy to *Azure* skip to [Deploy to Microsoft Azure](#deploy-to-microsoft-azure).
 
-6. Install the requirements using `pip install -r requirements.txt` (you might need to run it with the `--user` flag depending on your setup)
+6. Install the requirements using `pip install -r requirements/requirements.txt` (you might need to run it with the `--user` flag depending on your setup)
 
 7. The database will be saved into the `user\data` folder.
 
@@ -62,7 +62,7 @@ That's it! You can now use the bot by running `selfgpt.py`. Notice that tha bot 
 1. Add your NGROK auth token to `user/config/ngrok.yml` (`yml` not `yaml`)
    (visit https://dashboard.ngrok.com/get-started/your-authtoken)
 
-2. You need to set up your _Twilio_ account similar to step 7 in the previous section.
+2. You need to set up your _Twilio_ account similar to step 8 in the previous section.
 
 3. Run `build-docker.cmd`
 
@@ -70,10 +70,20 @@ That's it! You can now use the bot by running `selfgpt.py`. Notice that tha bot 
 
 5. Finally, copy the NGROK forwarding address into your Twilio configuration.
 
+## Deploy to Microsoft Azure
+
+1. Install the *Azure CLI* tools, instructions [here](https://learn.microsoft.com/en-us/cli/azure/install-azure-cli) and verify they work properly by running `az account list` and making sure it completes without error and outputs the correct information.
+
+2. Enter the `azure` folder, and run `azure-deploy.cmd` - it will ask you a few questions, and then deploy everything to *Azure* - it's as simple as that!
+
+3. Once the app is deployed, you can enter its address in the _Twilio_ incoming message hook (remember to suffix it with `/wasms`). The address is `https://<<app name>>.azurewebsites.net/wasms`.
+
+**NOTE**: If you are using a free app service plan (as is the default in the repo at the moment), note that it might take a while for the app to "warm up" so be patient (might take up to 3 minutes, or maybe more). The way to deal with that is to send a `/h` command to the bot and if it doesn't respond, wait 3 minutes and send another `/h` - only if it responds then you may send other commands to it.
+
 ## Known issues
 
-- The Twilio account disconnects every 72 hours: Reconnecting is easy. Just send the same message you sent on step 6 that connected you in the first place.
-- The Ngrok changes URL: Sometime the bot would stop responding. This can be caused by the Ngrok changing the URL. In this case you have to repeat step 7.
+- The Twilio account disconnects every 72 hours: Reconnecting is easy. Just send the same message you sent on step 8 that connected you in the first place.
+- The Ngrok changes URL: Sometime the bot would stop responding. This can be caused by the Ngrok changing the URL. In this case you have to repeat step 9.
 
 ## How to contribute
 

@@ -11,7 +11,9 @@ RUN curl -s https://ngrok-agent.s3.amazonaws.com/ngrok.asc \
 RUN pip install --upgrade pip
 RUN mkdir /SelfGPT
 WORKDIR /SelfGPT
-COPY . .
+COPY --from=requirements . .
 RUN pip install -r requirements.txt
+COPY . .
 COPY --from=docker . .
+EXPOSE 5000
 CMD ["bash", "start.sh"]

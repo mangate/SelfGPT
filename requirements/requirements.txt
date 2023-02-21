@@ -1,0 +1,12 @@
+pandas
+numpy
+openai
+flask
+twilio
+pyyaml
+matplotlib
+plotly
+scipy
+scikit-learn
+azure.core
+azure.storage.blob
