@@ -106,11 +106,12 @@ def wa_sms_reply():
       fhand.close()
       result = model.transcribe("sound.ogg")
       print("result-->",result)
-      text = result["text"]
+      text = result["text"].strip()
       if text.endswith("?"):
         msg = "/q " + text
       else:
         msg = "/s " + text
+      msg = msg.lower()
       prependToResponse = "I heard: " + text + "\n\nRunning this command: \n\n" + msg + "\n\n"
     else:
       prependToResponse = ""
